@@ -1,4 +1,4 @@
-''from __future__ import annotations
+from __future__ import annotations
 from abc import ABC, abstractmethod, abstractproperty
 from typing import Any
 
@@ -82,6 +82,8 @@ class House:
     def __getattr__(self, attribute):
         if attribute in self._components.keys():
             return self._components[attribute]
+        else:
+            raise AttributeError(f"{attribute} is not a valid attribute of {self.__class__.__name__}.")
 
     def list_components(self) -> None:
         return f"House components: {', '.join(self._components.keys())}"
@@ -168,6 +170,7 @@ if __name__ == "__main__":
     print(house.kitchen_floor)
     print(house.main_balcony)
     print(house.infinity_pool)
+    print(house.a)
     print(house.list_components())
 
 
